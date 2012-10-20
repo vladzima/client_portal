@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Client Portal</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+	<head>
+		<title>Client Portal</title>
+		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="row">
+			<div class="span3">
+				<ul>
+					<li><%= link_to "Customers", customers_path %></li>
+					<li><%= link_to "Files", customer_files_path %></li>
+					<li><%= link_to "Sketches", customer_files_path(:category => "sketches") %></li>
+					<li><%= link_to "Proposals", customer_files_path(:category => "proposals") %></li>
+					<li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
+					<li><%= link_to "Documents", customer_files_path(:category => "proposals") %></li>
+					<li><%= link_to "Locations", locations_path %></li>
+					<li><%= link_to "States", states_path %></li>
+					<li><%= link_to "Categories", categories_path %></li>
+				</ul>
+			</div>
+			<div class="span9">
+				<%= yield %>
+			</div>
+		</div>
+	</body>
 </html>
