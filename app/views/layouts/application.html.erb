@@ -10,16 +10,20 @@
 	<body>
 		<div class="row">
 			<div class="span3">
-				<ul>
+				<ul class="nav nav-tabs nav-stacked">
 					<li><%= link_to "Customers", customers_path %></li>
-					<li><%= link_to "Files", customer_files_path %></li>
+					<li><%= link_to "States", states_path %></li>
+					<li><%= link_to "Locations", locations_path %></li>
+					<li><%= link_to "Categories", categories_path %></li>
+					<li class="nav-header">Files</li>
 					<li><%= link_to "Sketches", customer_files_path(:category => "sketches") %></li>
 					<li><%= link_to "Proposals", customer_files_path(:category => "proposals") %></li>
 					<li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
-					<li><%= link_to "Documents", customer_files_path(:category => "proposals") %></li>
-					<li><%= link_to "Locations", locations_path %></li>
-					<li><%= link_to "States", states_path %></li>
-					<li><%= link_to "Categories", categories_path %></li>
+					<li><%= link_to "Documents", customer_files_path(:category => "documents") %></li>
+					<li class="nav-header">Customer Uploads</li>
+					<li><%= link_to "Specifications", customer_files_path(:category => "sketches") %></li>
+					<li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
+					<li><%= link_to "Request for Proposals", customer_files_path(:category => "requests") %></li>
 				</ul>
 			</div>
 			<div class="span9">

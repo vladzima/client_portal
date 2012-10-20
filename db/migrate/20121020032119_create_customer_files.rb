@@ -4,6 +4,7 @@ class CreateCustomerFiles < ActiveRecord::Migration
       t.string :name
       t.integer :category_id
       t.integer :customer_id
+	  #t.integer :location_id
 
       t.timestamps
     end
