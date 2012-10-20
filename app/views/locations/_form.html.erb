@@ -10,33 +10,43 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+    <%= f.label "Customer" %><br />
+    <%= f.collection_select :customer_id, Customer.all, :id, :name %>
+  </div>
 
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  
   <div class="field">
     <%= f.label :street %><br />
     <%= f.text_field :street %>
   </div>
+  
   <div class="field">
     <%= f.label :city %><br />
     <%= f.text_field :city %>
   </div>
+  
   <div class="field">
     <%= f.label "State" %><br />
     <%= f.collection_select :state_id, State.all, :id, :name %>
   </div>
+  
   <div class="field">
     <%= f.label :zipcode %><br />
     <%= f.text_field :zipcode %>
   </div>
+  
   <div class="field">
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
   </div>
 
   <div class="actions">
-    <%= f.submit, :class=> "btn btn-primary" %>
+    <%= f.submit "Save", :class=> "btn btn-primary" %>
   </div>
 <% end %>

@@ -3,7 +3,7 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Name</th>
+			<th>Store Number</th>
 			<th>Street</th>
 			<th>City</th>
 			<th>State</th>
@@ -17,10 +17,10 @@
 	<tbody>
 	<% @locations.each do |location| %>
 	  <tr>
-		<td><%= location.name %></td>
+		<td><%= location.store_number %></td>
 		<td><%= location.street %></td>
 		<td><%= location.city %></td>
-		<td><%= location.state_id %></td>
+		<td><%= location.state.name %></td>
 		<td><%= location.zipcode %></td>
 		<td><%= location.phone %></td>
 		<td><%= link_to 'Show', location %></td>
