@@ -22,29 +22,37 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
 
   create_table "customer_files", :force => true do |t|
     t.string   "name"
+    t.string   "description"
     t.integer  "category_id"
     t.integer  "customer_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "location_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "customers", :force => true do |t|
     t.string   "name"
+    t.integer  "customer_id"
     t.text     "datastore"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "locations", :force => true do |t|
-    t.string   "name"
+    t.string   "store_number"
     t.string   "street"
     t.string   "city"
     t.integer  "state_id"
     t.string   "zipcode"
     t.string   "phone"
+    t.integer  "customer_id"
     t.text     "datastore"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "states", :force => true do |t|
@@ -56,9 +64,10 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.text     "datastore"
+    t.string   "name"
     t.integer  "customer_id"
     t.boolean  "internal"
+    t.text     "datastore"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
