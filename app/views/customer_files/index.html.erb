@@ -1,0 +1,27 @@
+<h1>Listing customer_files</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Customer</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @customer_files.each do |customer_file| %>
+  <tr>
+    <td><%= customer_file.name %></td>
+    <td><%= customer_file.category_id %></td>
+    <td><%= customer_file.customer_id %></td>
+    <td><%= link_to 'Show', customer_file %></td>
+    <td><%= link_to 'Edit', edit_customer_file_path(customer_file) %></td>
+    <td><%= link_to 'Destroy', customer_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Customer file', new_customer_file_path %>

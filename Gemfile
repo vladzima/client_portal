@@ -7,6 +7,12 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+gem 'authlogic'
+gem 'formtastic-bootstrap'
+gem 'paperclip'
+
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Gems used only for assets and not required
 # in production environments by default.

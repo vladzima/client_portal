@@ -1,4 +1,10 @@
 ClientPortal::Application.routes.draw do
+  resources :states
+
+  resources :categories
+
+  resources :customer_files
+
   resources :locations
 
   resources :customers
