@@ -1,14 +1,15 @@
 class CustomerFilesController < ApplicationController
-  # GET /customer_files
-  # GET /customer_files.json
-  def index
-    @customer_files = CustomerFile.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @customer_files }
+    # GET /customer_files
+    # GET /customer_files.json
+    def index
+        if params[:category]
+            @customer_files = CustomerFile.where("category_id = ?", params[:category])
+            @filetype = Category.find(params[:category]).name
+        else
+            @customer_files = CustomerFile.all
+            @filetype = "File"
+        end
     end
-  end
 
   # GET /customer_files/1
   # GET /customer_files/1.json
@@ -21,16 +22,14 @@ class CustomerFilesController < ApplicationController
     end
   end
 
-  # GET /customer_files/new
-  # GET /customer_files/new.json
-  def new
-    @customer_file = CustomerFile.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @customer_file }
+    # GET /customer_files/new
+    # GET /customer_files/new.json
+    def new
+        @customer_file = CustomerFile.new
+        if params[:category_id]
+            @customer_file.category_id = params[:category_id]
+        end
     end
-  end
 
   # GET /customer_files/1/edit
   def edit

@@ -6,11 +6,11 @@
         <li><%= link_to "States", states_path %></li>
         <li><%= link_to "Locations", locations_path %></li>
         <li><%= link_to "Categories", categories_path %></li>
-        <li class="nav-header">Files</li>
-        <li><%= link_to "Sketches", customer_files_path(:category => "sketches") %></li>
-        <li><%= link_to "Proposals", customer_files_path(:category => "proposals") %></li>
-        <li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
-        <li><%= link_to "Documents", customer_files_path(:category => "documents") %></li>
+        <li class="nav-header">File Types</li>
+        <% filetypes = Category.all %>
+        <% filetypes.each do |filetype| %>
+        <li><%= link_to filetype.name, customer_files_path(:category => filetype.id) %></li>
+        <% end %>
         <li class="nav-header">Customer Uploads</li>
         <li><%= link_to "Specifications", customer_files_path(:category => "sketches") %></li>
         <li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>

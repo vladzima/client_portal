@@ -1,3 +1,4 @@
+<%= params %>
 <h1>Listing customer files</h1>
 
 <table class="table">
@@ -24,4 +25,4 @@
 
 <br />
 
-<%= link_to 'New Customer file', new_customer_file_path %>
+<%= link_to "Add new #{@filetype}", new_customer_file_path(:category_id => params[:category]), :class => "btn btn-primary" %>
