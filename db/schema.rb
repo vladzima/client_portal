@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.string   "varname"
     t.text     "datastore"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -36,10 +37,9 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
-    t.integer  "customer_id"
     t.text     "datastore"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "locations", :force => true do |t|

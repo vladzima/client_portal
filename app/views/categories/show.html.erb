@@ -5,11 +5,5 @@
   <%= @category.name %>
 </p>
 
-<p>
-  <b>Datastore:</b>
-  <%= @category.datastore %>
-</p>
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Edit', edit_category_path(@category), :class=> "btn" %>
+<%= link_to 'Back', categories_path, :class=> "btn" %>

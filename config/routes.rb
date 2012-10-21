@@ -9,6 +9,8 @@ ClientPortal::Application.routes.draw do
 
 	resources :customers do
 		resources :users
+		resources :locations
+		resources :states
 	end
 
 	resources :users
