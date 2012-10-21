@@ -1,34 +1,86 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Client Portal</title>
-		<%= stylesheet_link_tag    "application", :media => "all" %>
-		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
-		<%= javascript_include_tag "application" %>
+		<title>Best Neon Web Portal</title>
+		<!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">-->
+        <!-- include blue nil theme provided by portnine -->
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <link rel="stylesheet" type="text/css" href="/assets/blue-nile/lib/bootstrap/css/bootstrap.css">        
+        <link rel="stylesheet" type="text/css" href="/assets/blue-nile/stylesheets/theme.css">
+        <link rel="stylesheet" href="/assets/blue-nile/lib/font-awesome/css/font-awesome.css">
+        <style type="text/css">
+        #line-chart {
+            height:300px;
+            width:800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+        .brand { font-family: georgia, serif; }
+        .brand .first {
+            color: #ccc;
+            font-style: italic;
+        }
+        .navbar .brand a{
+            color:#ABD;
+        }
+        .brand .second {
+            color: #fff;
+            font-weight: bold;
+        }
+        .brand .third {
+            color: #ABD;
+        }
+        </style>
+        <%= javascript_include_tag "application" %>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
-		<div class="row">
-			<div class="span3">
-				<ul class="nav nav-tabs nav-stacked">
-					<li><%= link_to "Customers", customers_path %></li>
-					<li><%= link_to "States", states_path %></li>
-					<li><%= link_to "Locations", locations_path %></li>
-					<li><%= link_to "Categories", categories_path %></li>
-					<li class="nav-header">Files</li>
-					<li><%= link_to "Sketches", customer_files_path(:category => "sketches") %></li>
-					<li><%= link_to "Proposals", customer_files_path(:category => "proposals") %></li>
-					<li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
-					<li><%= link_to "Documents", customer_files_path(:category => "documents") %></li>
-					<li class="nav-header">Customer Uploads</li>
-					<li><%= link_to "Specifications", customer_files_path(:category => "sketches") %></li>
-					<li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
-					<li><%= link_to "Request for Proposals", customer_files_path(:category => "requests") %></li>
-				</ul>
-			</div>
-			<div class="span9">
-				<%= yield %>
+        
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav pull-right">
+                    
+                    <!--<li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>-->
+                    <li id="fat-menu" class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i> contact@bestneonsign.com
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">My Account</a></li>
+                            <li class="divider"></li>
+                            <!--<li><a tabindex="-1" class="visible-phone" href="#">Settings</a></li>-->
+                            <li class="divider visible-phone"></li>
+                            <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li><a tabindex="-1" href="sign-in.html">Logout</a></li>
+                    
+                </ul>
+                <a class="brand" href="#">
+                    <span class="first">Best Neon Sign </span>
+                    <span class="second">Web Portal</span>
+                </a>
 			</div>
 		</div>
+        
+        <%= render "layouts/customerSidebar" %>
+        
+        <div class="content">
+            <div class="header">
+                <h1>Dashboard</h1>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <%= yield %>
+                </div>
+            </div>
+            
+        </div>
 	</body>
 </html>

@@ -1,0 +1,25 @@
+<!-- showLocations partial -->
+<a href="#tablewidget" class="block-heading" data-toggle="collapse">Locations<span class="label label-warning"><%= @customer.locations.count %></span></a>
+<% if @customer.locations.count > 0 %>
+<div id="tablewidget" class="block-body collapse in">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Store Number</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @customer.locations.each do |location| %>
+            <tr>
+                <td><%= link_to location.store_number, customer_location_path(@customer.id, location.id) %></td>
+                <td><%= location.state.name %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<% else %>
+    <p>currently there are no locations</p>
+<% end %>
+<%= link_to 'Add Location +', new_customer_location_path(@customer.id), :class=>"btn btn-primary" %>

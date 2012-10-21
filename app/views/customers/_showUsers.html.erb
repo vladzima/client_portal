@@ -1,0 +1,25 @@
+        <!-- users partial -->
+        <a href="#tablewidget" class="block-heading" data-toggle="collapse">Customer Users<span class="label label-warning"><%= @customer.users.count %></span></a>
+        <% if @customer.users.count > 0 %>
+        <div id="tablewidget" class="block-body collapse in">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Users</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @customer.users.each do |user| %>
+                    <tr>
+                        <td><%= link_to user.email, customer_user_path(@customer.id, user.id) %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <% else %>
+            <p>currently there are no users</p>
+        <% end %>
+        <div class="widget-footer">
+        <%= link_to 'Add User +', new_customer_user_path(@customer.id), :class=>"btn btn-primary" %>
+        </div>

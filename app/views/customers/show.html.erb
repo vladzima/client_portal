@@ -1,5 +1,6 @@
-<div class="row">
-    <div class="span9">
+<div class="row-fluid">
+
+    <div class="block">
         <p id="notice"><%= notice %></p>
 
         <p>
@@ -11,56 +12,17 @@
             <%= link_to 'Edit', edit_customer_path(@customer), :class=>"btn" %>
             <%= link_to 'Back', customers_path, :class=>"btn" %>
         </div>
-        
     </div>
 </div>
 
-<div class="row">
+<div class="row-fluid">
     
-    <div class="span5">
-        <% if @customer.locations.count > 0 %>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Locations</th>
-                    <th>State</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @customer.locations.each do |location| %>
-                <tr>
-                    <td><%= link_to location.store_number, customer_location_path(@customer.id, location.id) %></td>
-                    <td><%= location.state.name %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-        <% else %>
-            <p>currently there are no locations</p>
-        <% end %>
-        <%= link_to 'Add Location', new_customer_location_path(@customer.id), :class=>"btn" %>
+    <div class="block span4">
+        <%= render "showLocations" %>
     </div>
      
-    
-    <div class="span4">
-        <% if @customer.users.count > 0 %>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Users</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @customer.users.each do |user| %>
-                <tr>
-                    <td><%= link_to user.email, customer_user_path(@customer.id, user.id) %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-        <% else %>
-            <p>currently there are no users</p>
-        <% end %>
-        <%= link_to 'Add User', new_customer_user_path(@customer.id), :class=>"btn" %>
+    <div class="block span4">
+        <%= render "showUsers" %>
     </div>
+    
 </div>

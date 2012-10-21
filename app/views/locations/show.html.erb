@@ -1,34 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+    <div class="span9">
 
-<p>
-  <b>Name:</b>
-  <%= @location.store_number %>
-</p>
+        <p id="notice"><%= notice %></p>
+        
+        <p>
+          <b>Customer:</b>
+          <%= @location.customer.name %>
+        </p>
+        
+        <p>
+          <b>Store number:</b>
+          <%= @location.store_number %>
+        </p>
+        
+        <p>
+          <b>Street:</b>
+          <%= @location.street %>
+        </p>
+        
+        <p>
+          <b>City:</b>
+          <%= @location.city %>
+        </p>
+        
+        <p>
+          <b>State:</b>
+          <%= @location.state.name%>
+        </p>
+        
+        <p>
+          <b>Zipcode:</b>
+          <%= @location.zipcode %>
+        </p>
+        
+        <p>
+          <b>Phone:</b>
+          <%= @location.phone %>
+        </p>
+        
+        <div class="btn-group">
+        <%= link_to 'Edit', edit_location_path(@location), :class=>"btn" %>
+        <%= link_to 'Back', locations_path, :class=>"btn" %>
+        </div>
+    </div>
+</div>
 
-<p>
-  <b>Street:</b>
-  <%= @location.street %>
-</p>
+<div class="row">
+    <div class="span9">
+        Files
+        
+    </div>
+</div>
 
-<p>
-  <b>City:</b>
-  <%= @location.city %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @location.state.name%>
-</p>
-
-<p>
-  <b>Zipcode:</b>
-  <%= @location.zipcode %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @location.phone %>
-</p>
-
-<%= link_to 'Edit', edit_location_path(@location), :class=>"btn" %>
-<%= link_to 'Back', locations_path, :class=>"btn" %>
