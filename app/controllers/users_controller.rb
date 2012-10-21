@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
+	# GET /users
+	# GET /users.json
+	def index
+		if params[:customer_id]
+			@users = User.where("customer_id = ?", params[:customer_id])
+		else
+			@users = User.all
+		end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: @users }
+		end
   end
 
   # GET /users/1
@@ -25,6 +29,9 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+	if params[:customer_id]
+		@user.customer_id = params[:customer_id]
+	end
 
     respond_to do |format|
       format.html # new.html.erb

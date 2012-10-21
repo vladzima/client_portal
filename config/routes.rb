@@ -1,17 +1,19 @@
 ClientPortal::Application.routes.draw do
-  resources :states
+	resources :states
 
-  resources :categories
+	resources :categories
 
-  resources :customer_files
+	resources :customer_files
 
-  resources :locations
+	resources :locations
 
-  resources :customers
+	resources :customers do
+		resources :users
+	end
 
-  resources :users
+	resources :users
   
-  root :to => 'customers#index'
+	root :to => 'customers#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
