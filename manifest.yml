@@ -1,0 +1,19 @@
+---
+applications:
+  .:
+    name: bestneon_prototype
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    infra: rs
+    url: ${name}.${target-base}
+    mem: 256M
+    instances: 1
+    services:
+      bestneon_prototype-mysql-52344:
+        type: mysql
+      cp_prod:
+        type: mysql

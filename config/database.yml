@@ -19,6 +19,13 @@ test:
   timeout: 5000
 
 production:
+  #adapter: mysql
+  #database: cp_prod
+  #pool: 5
+  #timeout: 5000
+  #username: root
+  #password: cli3ntP0rtal
+  #host: localhost
   adapter: sqlite3
   database: db/production.sqlite3
   pool: 5
