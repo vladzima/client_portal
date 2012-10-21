@@ -1,4 +1,6 @@
 class CustomerFilesController < ApplicationController
+    before_filter :require_login
+    
     # GET /customer_files
     # GET /customer_files.json
     def index

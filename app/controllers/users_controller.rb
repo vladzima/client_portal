@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
+    before_filter :require_login
 
 	def index
-		if params[:customer_id]
-			@users = User.where("customer_id = ?", params[:customer_id])
-            #.paginate(:page => params[:page], :per_page => 20)
-		else
-			@users = User.all
+        if current_user.internal == false
+            redirect_to customers_path
+        else
+            if params[:customer_id]
+                @users = User.where("customer_id = ?", params[:customer_id])
+            else
+                @users = User.all
+            end
 		end
     end
 

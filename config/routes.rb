@@ -14,6 +14,11 @@ ClientPortal::Application.routes.draw do
 	end
 
 	resources :users
+	
+	resources :user_sessions
+  
+    match 'login' => "user_sessions#new",      :as => :login
+    match 'logout' => "user_sessions#destroy", :as => :logout
   
 	root :to => 'customers#index'
 
