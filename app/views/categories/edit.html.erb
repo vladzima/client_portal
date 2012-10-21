@@ -1,6 +1,8 @@
 <h1>Editing category</h1>
 
-<%= render 'form' %>
+<%= render 'formtastic' %>
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+<div class="btn-group">
+<%= link_to 'Show', @category, :class=>"btn" %>
+<%= link_to 'Back', categories_path, :class=>"btn" %>
+</div>
