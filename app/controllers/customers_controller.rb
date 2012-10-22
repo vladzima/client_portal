@@ -1,14 +1,14 @@
 class CustomersController < ApplicationController
-    #before_filter :require_login
+    before_filter :require_login
     #before_filter :internal_only
     
     def index
-        #if current_user.internal == true
+        if current_user.internal == true
             @customers = Customer.all
-        #else
-        #    @customer = Customer.find(current_user.customer_id)
-        #    render "show"
-        #end
+        else
+            @customer = Customer.find(current_user.customer_id)
+            render "show"
+        end
     end
 
     def show

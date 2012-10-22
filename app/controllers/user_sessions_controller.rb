@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
         if current_user
             if current_user.internal == true
                 redirect_to customers_path
-            elsif current_account.isAdmin == true
+            elsif current_user.isAdmin == true
                 redirect_to customer_path(current_user.customer_id)
             end
         else
@@ -13,7 +13,6 @@ class UserSessionsController < ApplicationController
     end
 
     def create
-        logger.debug("params email: #{params[:user_session][:email]} and password: #{params[:user_session][:password]}")
         @user_session = UserSession.new(params[:user_session])
         #@user.save_without_session_maintenance  #-> send email with confirmation link that functions like password reset
         if @user_session.save

@@ -1,5 +1,5 @@
 class StatesController < ApplicationController
-    #before_filter :require_login
+    before_filter :require_login
 
   def index
     @states = State.paginate(:page => params[:page], :per_page => 20)

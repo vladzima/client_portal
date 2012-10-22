@@ -1,5 +1,5 @@
 class CustomerFilesController < ApplicationController
-    #before_filter :require_login
+    before_filter :require_login
 
     def index
         if params[:category]
