@@ -26,6 +26,12 @@
     <%= f.collection_select :customer_id, Customer.all, :id, :name %>
   </div>
   
+    
+  <div class="field">
+    <%= f.label :customer_id %><br />
+    <%= f.collection_select :location_id, Location.all, :id, :store_number %>
+  </div>
+  
   <div class="field">
   <%= f.file_field :attachment %>
   </div>

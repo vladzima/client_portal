@@ -12,6 +12,7 @@
     <% end %>
 
     <%= f.inputs do %>
+        <%= f.input :customer_id, :as => :hidden %>
         <%= f.input :store_number %>
         <%= f.input :street %>
         <%= f.input :city %>

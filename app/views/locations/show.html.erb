@@ -1,5 +1,6 @@
-<div class="row">
-    <div class="span9">
+<div class="row-fluid">
+
+    <div class="block">
 
         <p id="notice"><%= notice %></p>
         
@@ -45,10 +46,11 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="span9">
-        Files
-        
+<div class="row-fluid">
+
+    <div class="block">
+        Files<br />
+        <%= link_to "Add new files", new_location_customer_file_path(@location.customer_id), :class => "btn btn-primary" %>
     </div>
 </div>
 

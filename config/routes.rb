@@ -5,7 +5,9 @@ ClientPortal::Application.routes.draw do
 
 	resources :customer_files
 
-	resources :locations
+	resources :locations do
+        resources :customer_files
+	end
 
 	resources :customers do
 		resources :users

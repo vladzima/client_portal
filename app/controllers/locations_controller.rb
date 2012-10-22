@@ -10,8 +10,6 @@ class LocationsController < ApplicationController
         end
     end
 
-  # GET /locations/1
-  # GET /locations/1.json
   def show
     @location = Location.find(params[:id])
 
@@ -25,6 +23,7 @@ class LocationsController < ApplicationController
   # GET /locations/new.json
   def new
     @location = Location.new
+    @location.customer_id = params[:customer_id]
 
     respond_to do |format|
       format.html # new.html.erb

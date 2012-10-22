@@ -1,12 +1,9 @@
 class UserSessionsController < ApplicationController
+    layout "login"
 
     def new
         if current_user
-            if current_user.internal == true
-                redirect_to customers_path
-            elsif current_user.isAdmin == true
-                redirect_to customer_path(current_user.customer_id)
-            end
+            redirect_to customers_path
         else
             @user_session = UserSession.new
         end
@@ -14,10 +11,12 @@ class UserSessionsController < ApplicationController
 
     def create
         @user_session = UserSession.new(params[:user_session])
-        #@user.save_without_session_maintenance  #-> send email with confirmation link that functions like password reset
         if @user_session.save
-            redirect_to users_path, :notice => 'Thank you for using Padseeker'
+            logger.debug()
+            flash[:notice] =  'Thank you for using Best Neon Web portal'
+            redirect_to customers_path
         else
+            flash[:notice] = "no go today"
             render action: "new"
         end
     end

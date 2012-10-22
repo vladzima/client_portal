@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
     before_filter :require_login
+    #before_filter :internal_only
 
     def index
         @categories = Category.all

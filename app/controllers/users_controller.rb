@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_filter :require_login
+    #before_filter :require_login
 
 	def index
         if current_user.internal == false

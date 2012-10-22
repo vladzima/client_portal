@@ -46,13 +46,13 @@ class ApplicationController < ActionController::Base
         session[:return_to] = nil
     end
     
-    #def internal_only
-    #    if current_user.internal == true
-    #        return true
-    #    else
-    #        redirect_to users_path
-    #        return false
-    #    end
-    #end
+    def internal_only
+        if current_user.internal == true
+            return true
+        else
+            redirect_to customers_path
+            return false
+        end
+    end
 
 end
