@@ -2,28 +2,34 @@ class CustomerFilesController < ApplicationController
     before_filter :require_login
 
     def index
-        if params[:category]
-            @customer_files = CustomerFile.where("category_id = ?", params[:category])
-            @filetype = Category.find(params[:category]).name
-        else
-            @customer_files = CustomerFile.all
-            @filetype = "File"
+        if current_user.internal
+            if params[:category]
+                @customer_files = CustomerFile.where("category_id = ?", params[:category])
+                @filetype = Category.find(params[:category]).name
+            else
+                @customer_files = CustomerFile.all
+                @filetype = "File"
+            end
+        else #for customer user
+            if params[:category]
+                @customer_files = CustomerFile.where("category_id = ? AND customer_id = ?", params[:category], current_user.customer_id)
+                @filetype = Category.find(params[:category]).name
+            else
+                @customer_files = CustomerFile.where("customer_id = ?", current_user.customer_id)
+                @filetype = "File"
+            end
         end
     end
 
-  # GET /customer_files/1
-  # GET /customer_files/1.json
-  def show
-    @customer_file = CustomerFile.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @customer_file }
+    def show
+        @customer_file = CustomerFile.find(params[:id])
+        
+        respond_to do |format|
+            format.html # show.html.erb
+            format.json { render json: @customer_file }
+        end
     end
-  end
 
-    # GET /customer_files/new
-    # GET /customer_files/new.json
     def new
         @customer_file = CustomerFile.new
         if params[:category_id]

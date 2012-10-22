@@ -1,18 +1,22 @@
 class CustomersController < ApplicationController
-    #before_filter :require_login
-    #before_filter :internal_only
+    before_filter :require_login
+    before_filter :internal_only, :only => [ :show, :edit, :update, :show, :create, :update, :destroy ] 
     
     def index
-        #if current_user.internal == true
+        if current_user.internal == true
             @customers = Customer.all
-        #else
-        #    @customer = Customer.find(current_user.customer_id)
-        #    render "show"
-        #end
+        else
+            @customer = Customer.find(current_user.customer_id)
+            render "show"
+        end
     end
 
     def show
-        @customer = Customer.find(params[:id])
+        if current_user.internal == true
+            @customer = Customer.find(params[:id])
+        else
+            @customer = Customer.find(current_user.customer_id)
+        end
     end
 
     def new
@@ -50,4 +54,5 @@ class CustomersController < ApplicationController
 
         redirect_to customers_url
     end
+    
 end

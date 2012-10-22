@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
         if current_user.internal == true
             return true
         else
-            redirect_to customers_path
+            redirect_to customers_path, :notice => "This is for internal users only"
             return false
         end
     end

@@ -1,9 +1,11 @@
+
 <div class="sidebar-nav">
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>Customer Data</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
-    
+        <% if current_user.internal == true %>
         <li><%= link_to "Customers", customers_path %></li>
         <li><%= link_to "States", states_path %></li>
+        <% end %>
         <li><%= link_to "Locations", locations_path %></li>
         <li><%= link_to "Categories", categories_path %></li>
         <li class="nav-header">File Types</li>
@@ -15,6 +17,5 @@
         <li><%= link_to "Specifications", customer_files_path(:category => "sketches") %></li>
         <li><%= link_to "Photos", customer_files_path(:category => "photos") %></li>
         <li><%= link_to "Request for Proposals", customer_files_path(:category => "requests") %></li>
-        
     </ul>
 </div>
