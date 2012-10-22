@@ -1,8 +1,6 @@
 class CustomerFilesController < ApplicationController
-    before_filter :require_login
-    
-    # GET /customer_files
-    # GET /customer_files.json
+    #before_filter :require_login
+
     def index
         if params[:category]
             @customer_files = CustomerFile.where("category_id = ?", params[:category])

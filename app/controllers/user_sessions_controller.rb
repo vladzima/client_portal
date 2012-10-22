@@ -1,4 +1,4 @@
-class AccountSessionsController < ApplicationController
+class UserSessionsController < ApplicationController
 
     def new
         if current_user
@@ -13,8 +13,9 @@ class AccountSessionsController < ApplicationController
     end
 
     def create
-        #@user_session = UserSession.new(params[:user_session])
-        @user.save_without_session_maintenance  #-> send email with confirmation link that functions like password reset
+        logger.debug("params email: #{params[:user_session][:email]} and password: #{params[:user_session][:password]}")
+        @user_session = UserSession.new(params[:user_session])
+        #@user.save_without_session_maintenance  #-> send email with confirmation link that functions like password reset
         if @user_session.save
             redirect_to users_path, :notice => 'Thank you for using Padseeker'
         else

@@ -16,9 +16,10 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "varname"
+    t.boolean  "customer_filetype"
     t.text     "datastore"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "customer_files", :force => true do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
     t.string   "description"
     t.integer  "category_id"
     t.integer  "customer_id"
+    t.integer  "user_id"
     t.integer  "location_id"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
@@ -63,13 +65,24 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "name"
+    t.string   "email",                                  :null => false
+    t.string   "crypted_password",                       :null => false
+    t.string   "password_salt",                          :null => false
+    t.string   "persistence_token",                      :null => false
+    t.string   "single_access_token",                    :null => false
+    t.string   "perishable_token",                       :null => false
+    t.integer  "login_count",         :default => 0,     :null => false
+    t.integer  "failed_login_count",  :default => 0,     :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
     t.integer  "customer_id"
-    t.boolean  "internal"
-    t.text     "datastore"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "create_users",        :default => false
+    t.boolean  "internal",            :default => false, :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
 end

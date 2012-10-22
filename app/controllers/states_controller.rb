@@ -1,6 +1,6 @@
 class StatesController < ApplicationController
-  # GET /states
-  # GET /states.json
+    #before_filter :require_login
+
   def index
     @states = State.paginate(:page => params[:page], :per_page => 20)
 

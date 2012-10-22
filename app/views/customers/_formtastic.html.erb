@@ -1,0 +1,22 @@
+<%= semantic_form_for @customer, :html => {:class => "form-horizontal"} do |f| %>
+	<% f.semantic_errors %>
+    <% if @customer.errors.any? %>
+    <div class="alert alert-error">
+        <%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:
+        <ul>
+        <% @customer.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+
+    <%= f.inputs do %>
+        <%= f.input :name %>
+    <% end %>
+    
+    <%= f.actions do %>
+        <%= f.action :submit, :as => :button %>
+    <% end %>
+	
+<% end %>

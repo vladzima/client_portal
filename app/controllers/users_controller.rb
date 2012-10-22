@@ -2,15 +2,15 @@ class UsersController < ApplicationController
     before_filter :require_login
 
 	def index
-        if current_user.internal == false
-            redirect_to customers_path
-        else
+        #if current_user.internal == false
+        #    redirect_to customers_path
+        #else
             if params[:customer_id]
                 @users = User.where("customer_id = ?", params[:customer_id])
             else
                 @users = User.all
             end
-		end
+		#end
     end
 
     def show
@@ -39,14 +39,10 @@ class UsersController < ApplicationController
             @user.internal = false
         end
 
-        respond_to do |format|
-            if @user.save
-                format.html { redirect_to @user, notice: 'User was successfully created.' }
-                format.json { render json: @user, status: :created, location: @user }
-            else
-                format.html { render action: "new" }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
-            end
+        if @user.save
+            redirect_to @user, notice: 'User was successfully created.'
+        else
+            render action: "new"
         end
     end
 

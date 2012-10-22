@@ -20,7 +20,7 @@ ClientPortal::Application.routes.draw do
     match 'login' => "user_sessions#new",      :as => :login
     match 'logout' => "user_sessions#destroy", :as => :logout
   
-	root :to => 'customers#index'
+	root :to => 'user_sessions#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
