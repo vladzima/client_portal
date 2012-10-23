@@ -8,8 +8,8 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 #gem "pg"
 
-#gem 'authlogic'
-gem 'authlogic', :git => 'git@github.com:james2m/authlogic.git', :branch => 'fix-migrations'
+gem 'authlogic'
+#gem 'authlogic', :git => 'git@github.com:james2m/authlogic.git', :branch => 'fix-migrations'
 gem 'formtastic-bootstrap'
 gem 'paperclip'
 
