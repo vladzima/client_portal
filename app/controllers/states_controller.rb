@@ -1,36 +1,17 @@
 class StatesController < ApplicationController
-    #before_filter :require_login
-    #before_filter :internal_only
+    before_filter :require_login
+    before_filter :internal_only
 
-  def index
-    @states = State.paginate(:page => params[:page], :per_page => 20)
+	def index
+		@states = State.paginate(:page => params[:page], :per_page => 20)
+	end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @states }
-    end
-  end
-
-  # GET /states/1
-  # GET /states/1.json
   def show
     @state = State.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @state }
-    end
   end
 
-  # GET /states/new
-  # GET /states/new.json
   def new
     @state = State.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @state }
-    end
   end
 
   # GET /states/1/edit
@@ -75,10 +56,7 @@ class StatesController < ApplicationController
   def destroy
     @state = State.find(params[:id])
     @state.destroy
-
-    respond_to do |format|
-      format.html { redirect_to states_url }
-      format.json { head :no_content }
-    end
+	redirect_to states_url
   end
+  
 end
