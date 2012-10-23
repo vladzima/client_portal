@@ -19,23 +19,21 @@ test:
   timeout: 5000
 
 production:
-  #adapter: mysql
-  #database: cp_prod
-  #pool: 5
-  #timeout: 5000
-  #username: root
-  #password: cli3ntP0rtal
-  #host: localhost
+  adapter: mysql
+  database: mydb
+  host: instance29697.db.xeround.com:19283
+  username: clientportal
+  password: cli3ntP0rtal
   
   #adapter: sqlite3
   #database: db/production.sqlite3
   #pool: 5
   #timeout: 5000
 
-  adapter: postgresql
-  encoding: unicode
-  database: cp_prod
-  pool: 5
-  username: root
-  password: cli3ntP0rtal
+  #adapter: postgresql
+  #encoding: unicode
+  #database: cp_prod
+  #pool: 5
+  #username: root
+  #password: cli3ntP0rtal
   
