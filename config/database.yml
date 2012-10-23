@@ -26,15 +26,15 @@ production:
   #password: cli3ntP0rtal
   #port: 4567
   
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
-
-  #adapter: postgresql
-  #encoding: unicode
-  #database: cp_prod
+  #adapter: sqlite3
+  #database: db/production.sqlite3
   #pool: 5
-  #username: root
-  #password: cli3ntP0rtal
+  #timeout: 5000
+
+  adapter: postgresql
+  encoding: unicode
+  database: cp_prod
+  pool: 5
+  username: clientportal
+  password: cli3ntP0rtal
   
