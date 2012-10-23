@@ -15,6 +15,11 @@
   <%= @customer_file.customer_id %>
 </p>
 
+<p>
+    <b>File:</b>
+    <%= @customer_file.attachment %>
+</p>
+
 
 <%= link_to 'Edit', edit_customer_file_path(@customer_file) %> |
 <%= link_to 'Back', customer_files_path %>

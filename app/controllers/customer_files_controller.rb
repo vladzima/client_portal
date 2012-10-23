@@ -23,7 +23,7 @@ class CustomerFilesController < ApplicationController
 
     def show
         @customer_file = CustomerFile.find(params[:id])
-        
+
         respond_to do |format|
             format.html # show.html.erb
             format.json { render json: @customer_file }
@@ -32,57 +32,65 @@ class CustomerFilesController < ApplicationController
 
     def new
         @customer_file = CustomerFile.new
+        @filetype = "File"
+        if current_user.internal == true
+            if params[:location_id]
+                @location = Location.find(params[:location_id])
+                @customer_file.location_id = params[:location_id]
+                @customer_file.customer_id = @location.customer_id
+            elsif params[:customer_id]
+                @customer_file.customer_id = params[:customer_id]
+            end
+        else
+            @customer_file.customer_id = current_user.customer_id
+            
+        end
+        
         if params[:category_id]
             @customer_file.category_id = params[:category_id]
         end
     end
-
-  # GET /customer_files/1/edit
-  def edit
-    @customer_file = CustomerFile.find(params[:id])
-  end
-
-  # POST /customer_files
-  # POST /customer_files.json
-  def create
-    @customer_file = CustomerFile.new(params[:customer_file])
-
-    respond_to do |format|
-      if @customer_file.save
-        format.html { redirect_to @customer_file, notice: 'Customer file was successfully created.' }
-        format.json { render json: @customer_file, status: :created, location: @customer_file }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @customer_file.errors, status: :unprocessable_entity }
-      end
+    
+    def edit
+        @customer_file = CustomerFile.find(params[:id])
     end
-  end
 
-  # PUT /customer_files/1
-  # PUT /customer_files/1.json
-  def update
-    @customer_file = CustomerFile.find(params[:id])
+    def create
+        @customer_file = CustomerFile.new(params[:customer_file])
 
-    respond_to do |format|
-      if @customer_file.update_attributes(params[:customer_file])
-        format.html { redirect_to @customer_file, notice: 'Customer file was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @customer_file.errors, status: :unprocessable_entity }
-      end
+        respond_to do |format|
+          if @customer_file.save
+            format.html { redirect_to @customer_file, notice: 'Customer file was successfully created.' }
+            format.json { render json: @customer_file, status: :created, location: @customer_file }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @customer_file.errors, status: :unprocessable_entity }
+          end
+        end
     end
-  end
 
-  # DELETE /customer_files/1
-  # DELETE /customer_files/1.json
-  def destroy
-    @customer_file = CustomerFile.find(params[:id])
-    @customer_file.destroy
+    def update
+        @customer_file = CustomerFile.find(params[:id])
 
-    respond_to do |format|
-      format.html { redirect_to customer_files_url }
-      format.json { head :no_content }
+        respond_to do |format|
+            if @customer_file.update_attributes(params[:customer_file])
+                format.html { redirect_to @customer_file, notice: 'Customer file was successfully updated.' }
+                format.json { head :no_content }
+            else
+                format.html { render action: "edit" }
+                format.json { render json: @customer_file.errors, status: :unprocessable_entity }
+            end
+        end
     end
-  end
+
+    def destroy
+        @customer_file = CustomerFile.find(params[:id])
+        @customer_file.destroy
+
+        redirect_to customer_files_url
+    end
+  
+    #def download
+    #    send_file
+    #end
 end

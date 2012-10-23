@@ -1,0 +1,29 @@
+<%= params %>
+
+<%= semantic_form_for @customer_file, :html => { :multipart => true, :class=>"form-horizontal" } do |f| %>
+
+	<% f.semantic_errors %>
+    <% if @customer_file.errors.any? %>
+    <div class="alert alert-error">
+        <%= pluralize(@customer_file.errors.count, "error") %> prohibited this state from being saved:
+        <ul>
+        <% @customer_file.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+
+    <%= f.inputs do %>
+        <%= f.input :name %>
+        <%= f.input :category_id, :as => :select, :collection => Category.all %>
+        <%= f.input :customer_id, :as => :select, :collection => Customer.all %>
+        <%= f.input :location_id, :as => :select, :collection => Location.all %>
+        <%= f.input :attachment, :as => :file %>
+    <% end %>
+    
+    <%= f.actions do %>
+        <%= f.action :submit, :as => :button %>
+    <% end %>
+
+<% end %>
