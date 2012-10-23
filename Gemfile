@@ -7,7 +7,10 @@ gem 'rails', '3.2.8'
 
 #gem 'sqlite3'
 #gem "pg"
-require 'mysql'
+
+gem 'mysql'
+gem 'mysql2', "~> 0.3.7"
+#require 'mysql2'
 
 gem 'authlogic'
 #gem 'authlogic', :git => 'git@github.com:james2m/authlogic.git', :branch => 'fix-migrations'
