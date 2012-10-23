@@ -87,15 +87,16 @@
                 <h1>Dashboard</h1>
             </div>
             
-            <div class="row-fluid">
-                <% if notice %> 
-                <div class="alert alert-error">
-                <%= notice %>
-                </div>
-                <% end %>
-            </div>
-            
             <div class="container-fluid">
+                <div class="row-fluid">
+                    <% if flash[:notice] %> 
+                    <div class="alert alert-info"><%= flash[:notice] %></div>
+                    <% end %>
+                    <% if flash[:error] %>
+                    <div class="alert alert-info"><%= flash[:error] %></div>
+                    <% end %>
+                </div>
+            
                 <div class="row-fluid">
                     <%= yield %>
                 </div>

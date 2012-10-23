@@ -8,6 +8,11 @@ This app allows a user to do the following
 		
 	Create Customers
 	
+	Create Users
+	
 	Create Location
+	
+	Create Files associated with Customers and Users
+	
 	
 	

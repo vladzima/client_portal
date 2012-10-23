@@ -7,10 +7,12 @@
           <%= @customer.name %>
         </p>
         
+        <% if current_user.internal %>
         <div class="btn-group">
             <%= link_to 'Edit', edit_customer_path(@customer), :class=>"btn" %>
             <%= link_to 'Back', customers_path, :class=>"btn" %>
         </div>
+        <% end %>
     </div>
 </div>
 

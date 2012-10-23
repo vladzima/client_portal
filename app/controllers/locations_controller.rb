@@ -2,43 +2,33 @@ class LocationsController < ApplicationController
     before_filter :require_login
     
     def index
-        @locations = Location.all
-
-        respond_to do |format|
-          format.html # index.html.erb
-          format.json { render json: @locations }
+        if current_user.internal == true
+            @locations = Location.all
+            render "index_internal"
+        else
+            @locations = Location.where("customer_id = ?", current_user.customer_id)
+            render "index"
         end
     end
 
-  def show
-    @location = Location.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @location }
+    def show
+        #theoretically a customer would not think to put another number that does not belong to them, but eventually this needs more security
+        @location = Location.find(params[:id])
     end
-  end
 
-  # GET /locations/new
-  # GET /locations/new.json
-  def new
-    @location = Location.new
-    @location.customer_id = params[:customer_id]
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @location }
+    def new
+        @location = Location.new
+        @location.customer_id = params[:customer_id]
     end
-  end
 
-  # GET /locations/1/edit
-  def edit
-    @location = Location.find(params[:id])
-  end
+    # GET /locations/1/edit
+    def edit
+        @location = Location.find(params[:id])
+    end
 
-  # POST /locations
-  # POST /locations.json
-  def create
+    # POST /locations
+    # POST /locations.json
+    def create
 		@location = Location.new(params[:location])
 
 		respond_to do |format|
@@ -50,7 +40,7 @@ class LocationsController < ApplicationController
 				format.json { render json: @location.errors, status: :unprocessable_entity }
 			end
 		end
-  end
+    end
 
   # PUT /locations/1
   # PUT /locations/1.json

@@ -3,6 +3,7 @@
 <table class="table">
 	<thead>
 		<tr>
+            <th>Customer</th>
 			<th>Store Number</th>
 			<th>Street</th>
 			<th>City</th>
@@ -16,19 +17,20 @@
 	<tbody>
 	<% @locations.each do |location| %>
 	  <tr>
+        <td><%= location.customer.name %></td>
 		<td><%= link_to location.store_number, location_path(location.id) %></td>
 		<td><%= location.street %></td>
 		<td><%= location.city %></td>
 		<td><%= location.state.name %></td>
 		<td><%= location.zipcode %></td>
 		<td><%= location.phone %></td>
-		<td><%= link_to 'Edit', edit_location_path(location) %><i class="icon-pencil"></i></td>
-		<td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %><i class="icon-remove"></i></td>
+		<td><%= link_to "<i class='icon-pencil'> </i>".html_safe, edit_location_path(location) %></td>
+		<td><%= link_to "<i class='icon-remove'></i>".html_safe, location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
 	<% end %>
 	</tbody>
 </table>
 
-<div class="btn-toolbar">
+<br />
+
 <%= link_to 'New Location', new_location_path, :class=> "btn" %>
-</div>
