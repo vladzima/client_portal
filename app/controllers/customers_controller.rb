@@ -1,13 +1,16 @@
 class CustomersController < ApplicationController
     before_filter :require_login
-    before_filter :internal_only, :only => [ :show, :edit, :update, :show, :create, :update, :destroy ] 
+    before_filter :internal_only, :only => [ :show, :edit, :update, :show, :create, :update, :destroy ]
+    
+    #include CustomerHelper
+    #include ActionView::Helpers::CustomerHelper
     
     def index
         if current_user.internal == true
             @customers = Customer.all
         else
             @customer = Customer.find(current_user.customer_id)
-            #@stateLocCount = getStateLocationCountHash(@customer.locations)
+            @stateLocCount = Location.getStateLocationCountHash(@customer.locations)
             render "show"
         end
     end
@@ -15,22 +18,10 @@ class CustomersController < ApplicationController
     def show
         if current_user.internal == true
             @customer = Customer.find(params[:id])
-            #@stateLocCount = getStateLocationCountHash(@customer.locations)
-            locationArr = @customer.locations
-            @stateLocCount = Hash.new()
-            locationArr.each do |location|
-                #logger.debug("location #{location.id} state name: #{location.state.name}")
-                if @stateLocCount.include?(location.state.name) == false
-                    @stateLocCount[location.state.name] = 1
-                else
-                    #logger.debug(@stateLocCount[location.state.name])
-                    count = @stateLocCount[location.state.name].to_i + 1
-                    @stateLocCount[location.state.name] = count
-                end
-            end
         else
             @customer = Customer.find(current_user.customer_id)
         end
+        @stateLocCount = Location.getStateLocCountHash(@customer.locations)
     end
 
     def new
@@ -69,4 +60,7 @@ class CustomersController < ApplicationController
         redirect_to customers_url
     end
     
+    def helpers
+        ActionController::Base.helpers
+    end
 end
