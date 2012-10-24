@@ -1,4 +1,4 @@
 class Category < ActiveRecord::Base
-  attr_accessible :datastore, :name
+  attr_accessible :name
   has_many :customer_files
 end

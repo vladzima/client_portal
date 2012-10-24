@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-    #before_filter :require_login
+    before_filter :require_login
+    before_filter :internal_only, :only => [ :show, :edit, :update, :show, :create, :update, :destroy ]
 
 	def index
         if current_user.internal == false

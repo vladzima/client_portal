@@ -1,6 +1,11 @@
 <div class="row-fluid">
-    <div class="span4">
+    <div class="block span4">
 
+        <p>
+            <b>File:</b>
+            <%= @customer_file.attachment_file_name %>
+        </p>
+        
         <p>
           <b>Name:</b>
           <%= @customer_file.name %>
@@ -8,25 +13,28 @@
         
         <p>
           <b>Category:</b>
-          <%= @customer_file.category_id %>
+          <%= @customer_file.category.name %>
         </p>
         
+        <% if current_user.internal %>
         <p>
           <b>Customer:</b>
-          <%= @customer_file.customer_id %>
+          <%= @customer_file.customer.name %>
+        </p>
+        <% end %>
+    
+        <p>
+          <b>Location:</b>
+          <%= @customer_file.location.store_number %>
         </p>
         
-        <p>
-            <b>File:</b>
-            <%= @customer_file.attachment %>
-        </p>
         <div class="btn-group">
         <%= link_to 'Edit', edit_customer_file_path(@customer_file), :class=> "btn" %>
         <%= link_to 'Back', customer_files_path, :class=> "btn" %>
         </div>
     </div>
     
-    <div class="span8">
+    <div class="block span8">
 
     <% if @customer_file.isImage? %>
         <%= image_tag @customer_file.attachment %>

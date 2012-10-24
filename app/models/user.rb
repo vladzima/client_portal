@@ -22,6 +22,16 @@ class User < ActiveRecord::Base
         #UserMailer.password_reset_instructions(self).deliver
 	end
 	
+	def customer_name
+        if self.customer.nil? == false
+            return self.customer.name
+        elsif self.internal == true
+            return "Best Neon"
+        else
+            return "N/A"
+        end
+	end
+	
 	private
 
     def password_must_be_present

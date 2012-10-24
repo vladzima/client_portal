@@ -28,7 +28,7 @@ class LocationsController < ApplicationController
 
     def show
         #theoretically a customer would not think to put another number that does not belong to them, but eventually this needs more security
-        @location = Location.find(params[:id])
+        @location = Location.includes(:customer_files, :categories).find(params[:id])
     end
 
     def new

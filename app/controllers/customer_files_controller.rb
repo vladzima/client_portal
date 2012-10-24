@@ -2,23 +2,23 @@ class CustomerFilesController < ApplicationController
     before_filter :require_login
 
     def index
-        if current_user.internal
-            if params[:category]
-                @customer_files = CustomerFile.where("category_id = ?", params[:category])
-                @filetype = Category.find(params[:category]).name
-            else
-                @customer_files = CustomerFile.all
-                @filetype = "File"
-            end
-        else #for customer user
-            if params[:category]
-                @customer_files = CustomerFile.where("category_id = ? AND customer_id = ?", params[:category], current_user.customer_id)
-                @filetype = Category.find(params[:category]).name
-            else
-                @customer_files = CustomerFile.where("customer_id = ?", current_user.customer_id)
-                @filetype = "File"
-            end
+        conditionsHash = Hash.new
+        @filetype = "File"
+        
+        #if category id is passed
+        if params[:category]
+            conditionsHash["category_id"] = params[:category]
+            @customer_files = CustomerFile.where("category_id = ?", params[:category])
+            @filetype = Category.find(params[:category]).name
         end
+        
+        if current_user.internal == false
+            conditionsHash["customer_id"] =  current_user.customer_id
+        elsif params[:customer_id]
+            conditionsHash["customer"] = params[:customer_id]
+        end
+        
+        @customer_files = CustomerFile.where(conditionsHash).paginate(:page => params[:page], :per_page => 20)
     end
 
     def show

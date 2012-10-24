@@ -50,6 +50,11 @@
     <div class="control-group">
         <div class="controls">
         <%= f.submit "Save", :class=> "btn btn-primary" %>
+        <% if params[:location_id] %>
+            <%= link_to "Cancel", locations_path, :class=> "btn" %>
+        <% else %>
+            <%- link_to "Cancel", customer_files_path, :class=> "btn" %>
+        <% end %>
         </div>
     </div>
 

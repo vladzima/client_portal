@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
             flash[:notice] =  'Thank you for using Best Neon Web portal'
             redirect_to customers_path
         else
-            flash[:notice] = "no go today"
+            flash[:error] = "Invalid action"
             render action: "new"
         end
     end

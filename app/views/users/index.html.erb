@@ -4,8 +4,7 @@
 	<thead>
 		<tr>
 			<th>Email</th>
-			<th>Customer</th>
-			<th>Internal</th>
+			<th>Customer Name</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -14,8 +13,9 @@
 	<% @users.each do |user| %>
 		<tr>
 			<td><%= link_to user.email, user_path(user.id) %></td>
-			<td><%= user.customer_id %></td>
-			<td><%= user.internal %></td>
+			<td>
+                <%= user.customer_name %>
+            </td>
 			<td><%= link_to 'Edit', edit_user_path(user) %></td>
 			<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		</tr>

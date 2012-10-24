@@ -4,18 +4,22 @@
   <tr>
     <th>Name</th>
     <th>Category</th>
+    <% if current_user.internal %>
     <th>Customer</th>
-    <th></th>
+    <% end %>
+    <th>Location</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @customer_files.each do |customer_file| %>
   <tr>
-    <td><%= customer_file.name %></td>
-    <td><%= customer_file.category_id %></td>
-    <td><%= customer_file.customer_id %></td>
-    <td><%= link_to 'Show', customer_file %></td>
+    <td><%= link_to customer_file.attachment_file_name, customer_file_path(customer_file.id) %></td>
+    <td><%= customer_file.category.name %></td>
+    <% if current_user.internal %>
+    <td><%= customer_file.customer.name %></td>
+    <% end %>
+    <td><%= customer_file.customer_store %></td>
     <td><%= link_to 'Edit', edit_customer_file_path(customer_file) %></td>
     <td><%= link_to 'Destroy', customer_file, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -23,5 +27,7 @@
 </table>
 
 <br />
+
+<%= will_paginate(@customer_files) %>
 
 <%= link_to "Add new #{@filetype}", new_customer_file_path(:category_id => params[:category]), :class => "btn btn-primary" %>

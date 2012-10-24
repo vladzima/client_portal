@@ -15,7 +15,7 @@
             <tr>
                 <td><%= link_to file.attachment_file_name, customer_file_path(file.id) %></td>
                 <td><%= file.name %></td>
-                <td><%= file.category_id %></td>
+                <td><%= file.category.name %></td>
             </tr>
             <% end %>
         </tbody>
