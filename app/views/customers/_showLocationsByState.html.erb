@@ -1,5 +1,5 @@
 <!-- showLocations partial -->
-<a href="#tablewidget" class="block-heading" data-toggle="collapse">Locations<span class="label label-warning">unique state count</span></a>
+<a href="#tablewidget" class="block-heading" data-toggle="collapse">Locations in states <span class="label label-warning"><%= @stateLocCount.count %></span></a>
 <div id="tablewidget" class="block-body collapse in">
     <table class="table table-bordered table-striped">
         <thead>
@@ -11,7 +11,7 @@
         <tbody>
             <% @stateLocCount.each do |key, val| %>
             <tr>
-                <td><%= link_to key, locations_path(:state_name => key) %></td>
+                <td><%= link_to key, customer_locations_path(@customer.id, :state => key) %></td>
                 <td><%= val %></td>
             </tr>
         <% end %>
@@ -19,3 +19,10 @@
     </table>
 </div>
 
+<!--
+<ul>
+<% @customer.locations.group_by(&:state_id).each do |key, arr| %>
+<li><%= key %>: <%= arr.count %></li>
+<% end %>
+</ul>
+-->

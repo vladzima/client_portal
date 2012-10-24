@@ -1,14 +1,15 @@
 module CustomersHelper
         
-    def getStateLocationCountHash(locationArr)
-        stateLocCount = Hash.new()
+    def getStateLocCountHash
+        @stateLocCount = Hash.new()
         locationArr.each do |location|
-            if stateLocCount.includes(location.state.name)
-                stateLocCount[location.state.name] = 1
+            if @stateLocCount.include?(location.state.name) == false
+                @stateLocCount[location.state.name] = 1
             else
-                stateLocCount[location.state.name] = stateLocCount[location.state.name]+1
+                count = @stateLocCount[location.state.name].to_i + 1
+                @stateLocCount[location.state.name] = count
             end
         end
         return stateLocCount
-    end    
+    end
 end

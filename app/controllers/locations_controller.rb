@@ -3,10 +3,20 @@ class LocationsController < ApplicationController
     
     def index
         if current_user.internal == true
-            @locations = Location.all
+            @conditions = Hash.new
+            if params[:state]
+                @state = State.find_by_name(params[:state])
+                if @state.nil? == false
+                    @conditions["state_id"] = @state.id
+                end
+                if params[:customer_id]
+                    @conditions["customer_id"] = params[:customer_id]
+                end
+            end
+            @locations = Location.where(@conditions)
             render "index_internal"
         else
-            if params[:state_name]
+            if params[:state]
                 @state = State.find_by_name(params[:state_name])
                 @locations = Location.where("customer_id = ? AND state_id = ?", current_user.customer_id, @state.id)
             else

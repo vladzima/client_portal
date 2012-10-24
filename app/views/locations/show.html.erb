@@ -49,7 +49,7 @@
 <div class="row-fluid">
 
     <div class="block">
-        Files<br />
+        <%= render "showFiles" %>
         <%= link_to "Add new files", new_location_customer_file_path(@location.customer_id), :class => "btn btn-primary" %>
         <%= link_to "Add new photo", new_location_customer_file_path(@location.customer_id, :category_id => 1), :class => "btn btn-primary" %>
     </div>
