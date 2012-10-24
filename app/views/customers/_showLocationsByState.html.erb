@@ -1,0 +1,21 @@
+<!-- showLocations partial -->
+<a href="#tablewidget" class="block-heading" data-toggle="collapse">Locations<span class="label label-warning">unique state count</span></a>
+<div id="tablewidget" class="block-body collapse in">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>State</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @stateLocCount.each do |key, val| %>
+            <tr>
+                <td><%= link_to key, locations_path(:state_name => key) %></td>
+                <td><%= val %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
+

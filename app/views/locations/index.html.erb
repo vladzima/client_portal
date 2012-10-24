@@ -22,8 +22,8 @@
 		<td><%= location.state.name %></td>
 		<td><%= location.zipcode %></td>
 		<td><%= location.phone %></td>
-		<td><%= link_to 'Edit', edit_location_path(location) %><i class="icon-pencil"></i></td>
-		<td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %><i class="icon-remove"></i></td>
+		<td><%= link_to "<i class='icon-pencil'> </i>".html_safe, edit_location_path(location.id) %><i class="icon-pencil"></i></td>
+		<td><%= link_to "<i class='icon-remove'></i>".html_safe, location_path(location.id), method: :delete, data: { confirm: 'Are you sure?' } %><i class="icon-remove"></i></td>
 	  </tr>
 	<% end %>
 	</tbody>

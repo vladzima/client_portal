@@ -6,7 +6,12 @@ class LocationsController < ApplicationController
             @locations = Location.all
             render "index_internal"
         else
-            @locations = Location.where("customer_id = ?", current_user.customer_id)
+            if params[:state_name]
+                @state = State.find_by_name(params[:state_name])
+                @locations = Location.where("customer_id = ? AND state_id = ?", current_user.customer_id, @state.id)
+            else
+                @locations = Location.where("customer_id = ?", current_user.customer_id)
+            end
             render "index"
         end
     end

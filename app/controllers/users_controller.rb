@@ -38,6 +38,7 @@ class UsersController < ApplicationController
             @user.internal = true
         else
             @user.internal = false
+            @user.create_users = false
         end
 
         if @user.save

@@ -21,6 +21,7 @@
             <%= f.input :customer_id, :as => :hidden %>
         <% else %>
             <%= f.input :internal %>
+            <%= f.input :create_users, :as => :check_boxes %>
             <%= f.input :customer_id, :as => :select, :collection => Customer.all %>
         <% end %>
     <% end %>
