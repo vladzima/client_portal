@@ -13,7 +13,7 @@
             <% @customer.locations.each do |location| %>
             <tr>
                 <td><%= link_to location.store_number, customer_location_path(@customer.id, location.id) %></td>
-                <td><%= location.state.name %></td>
+                <td><%= location.state_name %></td>
             </tr>
             <% end %>
         </tbody>

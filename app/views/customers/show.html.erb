@@ -22,9 +22,11 @@
         <%= render "showLocations" %>
     </div>
     
+    <% if @stateLocCount.count > 1 %>
     <div class="block span4">
         <%= render "showLocationsByState" %>
     </div>
+    <% end %>
      
     <div class="block span4">
         <%= render "showUsers" %>

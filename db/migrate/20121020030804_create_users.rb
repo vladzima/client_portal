@@ -21,6 +21,7 @@ class CreateUsers < ActiveRecord::Migration
             t.integer :customer_id
             t.boolean :internal, :default => false, :null => false
             t.boolean :admin, :default => false
+            t.integer :location_id
             
             t.timestamps
         end

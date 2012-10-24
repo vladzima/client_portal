@@ -5,5 +5,5 @@ class Customer < ActiveRecord::Base
 	
 	has_attached_file :attachment
 
-	validates :name, :uniqueness => true, :presense => true
+	validates :name, :uniqueness => true, :presence => true
 end
