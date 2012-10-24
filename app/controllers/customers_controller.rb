@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
             @customers = Customer.all
         else
             @customer = Customer.find(current_user.customer_id)
-            @stateLocCount = Location.getStateLocationCountHash(@customer.locations)
+            @stateLocCount = Location.getStateLocCountHash(@customer.locations)
             render "show"
         end
     end

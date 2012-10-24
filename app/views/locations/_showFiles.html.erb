@@ -1,0 +1,26 @@
+<!-- showLocations partial -->
+<a href="#tablewidget" class="block-heading" data-toggle="collapse">Customer files: <span class="label label-warning"><%= @location.customer_files.count %></span></a>
+<% if @location.customer_files.count > 0 %>
+<div id="tablewidget" class="block-body collapse in">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Name</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @location.customer_files.each do |file| %>
+            <tr>
+                <td><%= link_to file.attachment_file_name, customer_file_path(file.id) %></td>
+                <td><%= file.name %></td>
+                <td><%= file.category_id %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<% else %>
+    <p>currently there are no files</p>
+<% end %>

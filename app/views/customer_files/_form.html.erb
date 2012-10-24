@@ -1,6 +1,6 @@
 <%= form_for @customer_file, :html => { :multipart => true, :class=>"form-horizontal" } do |f| %>
 
-  <% if @customer_file.errors.any? %>
+    <% if @customer_file.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@customer_file.errors.count, "error") %> prohibited this customer_file from being saved:</h2>
 
@@ -10,7 +10,14 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
+  
+    <div class="control-group">
+        <%= f.label :attachment, :class => "control-label" %>
+        <div class="controls">
+        <%= f.file_field :attachment %>
+        </div>
+    </div>
 
     <div class="control-group">
         <%= f.label :name, :class => "control-label" %>
@@ -37,13 +44,6 @@
         <%= f.label :location_id, :class => "control-label" %>
         <div class="controls">
         <%= f.collection_select :location_id, Location.all, :id, :store_number %>
-        </div>
-    </div>
-  
-    <div class="control-group">
-        <%= f.label :attachment, :class => "control-label" %>
-        <div class="controls">
-        <%= f.file_field :attachment %>
         </div>
     </div>
   

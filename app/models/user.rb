@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	attr_accessible :email, :customer_id, :internal
-	has_one :customer
+	belongs_to :customer
 	
 	attr_accessor :password_confirmation
     attr_reader   :password

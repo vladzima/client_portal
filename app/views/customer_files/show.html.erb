@@ -1,25 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+    <div class="span4">
 
-<p>
-  <b>Name:</b>
-  <%= @customer_file.name %>
-</p>
+        <p>
+          <b>Name:</b>
+          <%= @customer_file.name %>
+        </p>
+        
+        <p>
+          <b>Category:</b>
+          <%= @customer_file.category_id %>
+        </p>
+        
+        <p>
+          <b>Customer:</b>
+          <%= @customer_file.customer_id %>
+        </p>
+        
+        <p>
+            <b>File:</b>
+            <%= @customer_file.attachment %>
+        </p>
+        <div class="btn-group">
+        <%= link_to 'Edit', edit_customer_file_path(@customer_file), :class=> "btn" %>
+        <%= link_to 'Back', customer_files_path, :class=> "btn" %>
+        </div>
+    </div>
+    
+    <div class="span8">
 
-<p>
-  <b>Category:</b>
-  <%= @customer_file.category_id %>
-</p>
+    <% if @customer_file.isImage? %>
+        <%= image_tag @customer_file.attachment %>
+    <% end %>
 
-<p>
-  <b>Customer:</b>
-  <%= @customer_file.customer_id %>
-</p>
-
-<p>
-    <b>File:</b>
-    <%= @customer_file.attachment %>
-</p>
-
-
-<%= link_to 'Edit', edit_customer_file_path(@customer_file) %> |
-<%= link_to 'Back', customer_files_path %>
+    </div>
+</div>

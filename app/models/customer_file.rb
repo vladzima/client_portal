@@ -1,8 +1,17 @@
 class CustomerFile < ActiveRecord::Base
 	attr_accessible :category_id, :customer_id, :name, :attachment, :location_id, :customer_id
 	has_one :category
-	has_one :location
+	belongs_to :location
 	belongs_to :customer
 	
 	has_attached_file :attachment
+	
+	#this is not a sustainable solution... need to accept more file extensions, maybe use an array?
+	def isImage?
+        if self.attachment_file_name.end_with?('.png') || self.attachment_file_name.end_with?('.jpg')
+            return true
+        else
+            return false
+        end
+	end
 end

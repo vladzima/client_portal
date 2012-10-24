@@ -22,7 +22,8 @@
     <% end %>
     
     <%= f.actions do %>
-        <%= f.action :submit, :as => :button %>
+        <%= f.action :submit, :as => :button, :class=> "btn btn-primary" %>
+        <%= link_to "Cancel", locations_path, :class=> "btn" %>
     <% end %>
 	
 <% end %>
