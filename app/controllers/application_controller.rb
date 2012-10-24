@@ -54,5 +54,14 @@ class ApplicationController < ActionController::Base
             return false
         end
     end
+    
+    def internal_admin_only
+        if current_user.isAdmin?
+            return true
+        else
+            redirect_to customers_path, :error => "This is for admin users only"
+            return false
+        end
+    end
 
 end

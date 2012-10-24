@@ -5,16 +5,18 @@
   <%= @user.email %>
 </p>
 
+<% if @user.internal != true %>
 <p>
   <b>Customer:</b>
-  <%= @user.customer_id %>
+  <%= @user.customer.name %>
 </p>
-
-<p>
-  <b>Internal:</b>
-  <%= @user.internal %>
-</p>
-
+<% else %>
+    <% if current_user.isAdmin? %>
+    <p><b>Internal Admin</b></p>
+    <% else %>
+    <p><b>Internal User</b></p>
+    <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

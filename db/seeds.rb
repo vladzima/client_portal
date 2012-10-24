@@ -6,7 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: "jmtoporek@gmail.com", password: "password", password_confirmation: "password", internal: true, customer_id: nil, create_user: true)
+Customer.create(id: 1, name: "Customer 1")
+Customer.create(id: 2, name: "Customer 2")
+
+Location.create(id: 1, store_number: "Store 1", customer_id: 1)
+Location.create(id: 2, store_number: "Store 2", customer_id: 1)
+Location.create(id: 3, store_number: "Store 3", customer_id: 1)
+
+Location.create(id: 2, store_number: "One store only", customer_id: 2)
+
+#User.create(email: "jmtoporek@gmail.com", password: "password", password_confirmation: "password", internal: true, customer_id: nil)
+u = User.new(email: "jmtoporek@gmail.com", password: "password", password_confirmation: "password", internal: true, customer_id: nil)
+u.save
+#User.create(email: "padseeker@gmail.com", password: "password", password_confirmation: "password", internal: false, customer_id: 1)
+#User.create(email: "david@dkp-image.com", password: "password", password_confirmation: "password", internal: true, customer_id: nil)
+#User.create(email: "dkp913@gmail.com", password: "password", password_confirmation: "password", internal: false, customer_id: 1)
 
 State.create(name: "Alabama", abbr: "AL")
 State.create(name: "Alaska", abbr: "AK")
@@ -66,8 +80,3 @@ Category.create(name: "Photos")
 Category.create(name: "Documents")
 Category.create(name: "Specifications")
 Category.create(name: "Request for Proposal")
-
-Customer.create(id: 1, name: "Customer 1")
-
-User.create(email: "padseeker@gmail.com", customer_id: 1)
-

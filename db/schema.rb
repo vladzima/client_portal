@@ -15,11 +15,9 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.string   "varname"
-    t.boolean  "customer_filetype"
     t.text     "datastore"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "customer_files", :force => true do |t|
@@ -79,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.integer  "customer_id"
-    t.boolean  "create_users",        :default => false
     t.boolean  "internal",            :default => false, :null => false
+    t.boolean  "admin",               :default => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end

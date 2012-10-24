@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :customer_id, :internal
+	attr_accessible :email, :customer_id, :internal, :admin #internal and admin really should be a private variable -> we can change that later
 	belongs_to :customer
 	
 	attr_accessor :password_confirmation
     attr_reader   :password
+    
+    #attr_accessor :password 
+    #attr_accessible :password, :password_confirmation
     
     before_validation :create_user_sans_password, :on => :create
 	

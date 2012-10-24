@@ -4,4 +4,6 @@ class Customer < ActiveRecord::Base
 	has_many :locations
 	
 	has_attached_file :attachment
+
+	validates :name, :uniqueness => true, :presense => true
 end

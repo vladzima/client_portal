@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_filter :require_login
-    before_filter :internal_only, :only => [ :show, :edit, :update, :show, :create, :update, :destroy ]
+    before_filter :internal_only, :only => [:show, :edit, :update, :create, :update, :destroy ]
+    before_filter :internal_admin_only, :only => [:new, :edit, :create, :destroy]
 
 	def index
         if current_user.internal == false
@@ -24,8 +25,8 @@ class UsersController < ApplicationController
     def new
         @user = User.new
         if params[:customer_id]
-        	@customer = Customer.find(params[:customer_id])
-        	@user.customer_id = @customer.id
+            @customer = Customer.find(params[:customer_id])
+            @user.customer_id = @customer.id
         end
     end
 
