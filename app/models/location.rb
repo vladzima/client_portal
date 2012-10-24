@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
 	has_many :categories, :through => :customer_files
 	
 	validates_uniqueness_of :store_number,  :scope => :customer_id
+	validates :store_number, :presense => true
 	
 	def self.getStateLocCountHash(locationArr)
         stateLocCount = Hash.new()
