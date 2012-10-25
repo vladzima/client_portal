@@ -12,22 +12,13 @@
     <% end %>
 
     <%= f.inputs do %>
-        <% if params[:customer_id] %>
-            <%= params[:action] %> user for <%= @customer.name %>
-        <% end %>
         <%= f.input :email %>
-        <% if params[:customer_id] %>
-            <%= f.input :internal, :as => :hidden %>
-            <%= f.input :customer_id, :as => :hidden %>
-        <% else %>
-            <%= f.input :internal %>
-            <%= f.input :admin, :as => :radio %>
-            <%= f.input :customer_id, :as => :select, :collection => Customer.all %>
-        <% end %>
+        <%= f.input :customer_id, :as => :hidden %>
     <% end %>
     
     <%= f.actions do %>
         <%= f.action :submit, :as => :button %>
+        <%= link_to "Cancel", customer_path(params[:customer_id]), :class => "btn" %>
     <% end %>
 	
 <% end %>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     #attr_accessible :password, :password_confirmation
     
     before_validation :create_user_sans_password, :on => :create
+    before_save :set_internal_vals
 	
 	acts_as_authentic do |c|
         c.validate_login_field = false
@@ -34,6 +35,24 @@ class User < ActiveRecord::Base
             return "N/A"
         end
 	end
+	
+    def isAdmin?
+        if self.admin == true
+            return true
+        else
+            return false
+        end
+    end
+    
+    def set_internal_vals
+        if self.customer_id.nil? == false
+            self.internal = true
+        end
+        
+        if self.internal == false
+            self.admin = false
+        end
+    end
 	
 	private
 

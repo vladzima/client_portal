@@ -18,6 +18,14 @@
         <%= f.file_field :attachment %>
         </div>
     </div>
+	<% if @customer_file.attachment_file_name.nil? == false %>
+	<div class="control-group">
+	    <%= f.label :delete_upload, :class => "control-label" %>
+        <div class="controls">
+        <%= f.check_box :delete_upload %>
+        </div>
+	</div>
+	<% end %>
 
     <div class="control-group">
         <%= f.label :name, :class => "control-label" %>

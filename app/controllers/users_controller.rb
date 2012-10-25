@@ -35,14 +35,8 @@ class UsersController < ApplicationController
     end
 
     def create
+        #logger.debug(params)
         @user = User.new(params[:user])
-        if @user.customer_id.nil? == true
-            @user.internal = true
-        else
-            @user.internal = false
-            @user.create_users = false
-        end
-
         if @user.save
             redirect_to @user, notice: 'User was successfully created.'
         else
@@ -52,6 +46,7 @@ class UsersController < ApplicationController
 
 
     def update
+        #logger.debug(params)
         @user = User.find(params[:id])
 
         respond_to do |format|

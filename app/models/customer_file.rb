@@ -1,5 +1,5 @@
 class CustomerFile < ActiveRecord::Base
-	attr_accessible :category_id, :customer_id, :name, :attachment, :location_id, :customer_id
+	attr_accessible :category_id, :customer_id, :name, :attachment, :location_id, :customer_id, :delete_upload
 
 	belongs_to :category
 	belongs_to :location
@@ -12,8 +12,10 @@ class CustomerFile < ActiveRecord::Base
 	
 	#this is not a sustainable solution... need to accept more file extensions, maybe use an array?
 	def isImage?
-        if self.attachment_file_name.end_with?('.png') || self.attachment_file_name.end_with?('.jpg')
-            return true
+        if self.attachment_file_name.nil?
+			return false
+		elsif self.attachment_file_name.end_with?('.png') || self.attachment_file_name.end_with?('.jpg')
+			return true
         else
             return false
         end
@@ -28,8 +30,9 @@ class CustomerFile < ActiveRecord::Base
 	end
 	
 	private
+	
     def destroy_upload?
-        self.image.clear if @delete_upload == "1"
+        self.attachment.clear if @delete_upload == "1"
     end
 	
 end
