@@ -16,5 +16,7 @@ class CreateCustomerFiles < ActiveRecord::Migration
             
             t.timestamps
         end
+        
+        add_index :customer_files [ :category_id, :customer_id, :user_id, :location_id]
     end
 end

@@ -1,0 +1,42 @@
+<div id="login-container">
+
+    <div id="login-header">
+
+        <h3>Forgot your password?</h3>
+
+    </div>
+
+    <div id="login-content" class="clearfix">
+        
+        <div class="alert alert-info">
+        Fill out the form below and instructions to reset your password will be emailed to you:
+        </div>
+
+        <form action="/password_resets" method="post">
+        
+            <div class="control-group">
+                <label class ="control-label">Email:</label>
+                
+                <div class="controls">
+                    <input type="text" name="email" id="email" class="span12" />
+                </div>
+            </div>
+            
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary">
+                Send email for password reset
+                </button>
+            </div>
+        </form>
+
+    </div>
+    
+    <!--
+    <div id="login-extra">
+        
+        <p><%= link_to "Log in", login_path %></p>
+        
+    </div>
+    -->
+    
+</div>

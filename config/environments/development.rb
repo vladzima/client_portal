@@ -34,4 +34,19 @@ ClientPortal::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  ActionMailer::Base.delivery_method = :smtp
+ 
+ #APP_IS_LIVE= false #global variable that is no longer being used
+
+    ActionMailer::Base.smtp_settings = {
+    :user_name => "to_be_determined",
+    :password => "to_be_determined",
+    :domain => "localhost:3000",
+    :address => "unknown",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+    
 end

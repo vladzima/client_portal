@@ -1,10 +1,10 @@
 class CreateStates < ActiveRecord::Migration
-  def change
-    create_table :states do |t|
-      t.string :name
-      t.string :abbr
+    def change
+        create_table :states do |t|
+            t.string :name
+            t.string :abbr
 
-      t.timestamps
+            t.timestamps
+        end
     end
-  end
 end

@@ -81,7 +81,13 @@
         <div class="row-fluid">
             <div class="dialog">
                 <div class="block">
-                    <p class="block-heading">Sign In</p>
+                    <p class="block-heading">
+                        <% if params[:controller] == "password_resets" %>
+                        Password Reset
+                        <% else %>
+                        Sign In
+                        <% end %>
+                    </p>
                     <div class="block-body">
                         <%= yield %>
                     </div>

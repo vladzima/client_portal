@@ -18,6 +18,8 @@ ClientPortal::Application.routes.draw do
 	resources :users
 	
 	resources :user_sessions
+	
+	resources :password_resets
   
     match 'login' => "user_sessions#new",      :as => :login
     match 'logout' => "user_sessions#destroy", :as => :logout

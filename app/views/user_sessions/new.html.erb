@@ -25,12 +25,15 @@
     <div class="controls">
     <%= f.password_field :password, :class=>"span12" %>
     </div>
+    
+    <div class="pull-left">
+    <%= link_to "Forgot your password?", password_resets_path  %>
+    </div>
 
     <button type="submit" class="btn btn-primary pull-right">
     Login
     </button>
-    
-    <div class="clearfix"></div>
 
 <% end %>
-Forgot your password?
+
+<div class="clearfix"></div>
