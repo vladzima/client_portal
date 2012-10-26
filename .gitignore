@@ -11,7 +11,7 @@
 /db/*.sqlite3
 
 #ignore paperclip files in
-#/public/system/*
+/public/system/*
 
 # ignore environment files
 /config/environments/*

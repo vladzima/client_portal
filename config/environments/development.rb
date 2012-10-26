@@ -40,12 +40,12 @@ ClientPortal::Application.configure do
  #APP_IS_LIVE= false #global variable that is no longer being used
 
     ActionMailer::Base.smtp_settings = {
-    :user_name => "to_be_determined",
-    :password => "to_be_determined",
-    :domain => "localhost:3000",
-    :address => "unknown",
+    :user_name => "bestneonsign.com@gmail.com",
+    :password => "passwordhere",
+    :domain => "gmail.com",
+    :address => "smtp.gmail.com",
     :port => 587,
-    :authentication => :plain,
+    :authentication => "plain",
     :enable_starttls_auto => true
   }
     

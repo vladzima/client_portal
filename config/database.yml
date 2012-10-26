@@ -29,6 +29,6 @@ production:
   #encoding: unicode
   #database: cp_prod
   #pool: 5
-  #username: usernameGoesHere
+  #username: changeme
   #password: passwordGoesHere
   
