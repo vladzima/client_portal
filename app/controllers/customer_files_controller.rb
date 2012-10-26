@@ -90,7 +90,9 @@ class CustomerFilesController < ApplicationController
         redirect_to customer_files_url
     end
   
-    #def download
-    #    send_file
-    #end
+    def download
+        #send_file
+        @customer_file = CustomerFile.find(params[:id])
+        send_file @customer_file.attachment.path, :filename => @customer_file.attachment_file_name
+    end
 end

@@ -18,7 +18,11 @@
     
     <%= f.actions do %>
         <%= f.action :submit, :as => :button %>
-        <%= link_to "Cancel", customer_path(params[:customer_id]), :class => "btn" %>
+        <% if params[:customer_id] %>
+            <%= link_to "Cancel", customer_user_path(params[:customer_id], @user.id), :class=> "btn" %> 
+        <% else %>
+            <%= link_to "Cancel", user_path(@user.id), :class => "btn" %>
+        <% end %>
     <% end %>
 	
 <% end %>

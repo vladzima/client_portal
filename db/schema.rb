@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20121020032248) do
     t.integer  "customer_id"
     t.boolean  "internal",            :default => false, :null => false
     t.boolean  "admin",               :default => false
+    t.integer  "location_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end

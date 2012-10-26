@@ -31,7 +31,8 @@
             color: #ABD;
         }
         </style>
-        <%= javascript_include_tag "application" %>
+        <% javascript_include_tag "application" %>
+        <script src="/assets/application.js"></script>
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,7 +47,7 @@
                     
                     <!--<li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">Settings</a></li>-->
                     <li id="fat-menu" class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="<%= edit_profile_users_path %>" role="button" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-user"></i>
                             <% if current_user %>
                             <%= current_user.email %>

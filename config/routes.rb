@@ -3,7 +3,11 @@ ClientPortal::Application.routes.draw do
 
 	resources :categories
 
-	resources :customer_files
+	resources :customer_files do
+        member do
+            get 'download'
+        end
+	end
 
 	resources :locations do
         resources :customer_files
@@ -15,7 +19,11 @@ ClientPortal::Application.routes.draw do
 		resources :states
 	end
 
-	resources :users
+	resources :users do
+        collection do
+            get 'edit_profile'
+        end
+	end
 	
 	resources :user_sessions
 	

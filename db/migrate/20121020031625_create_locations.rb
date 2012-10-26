@@ -13,6 +13,6 @@ class CreateLocations < ActiveRecord::Migration
             t.timestamps
         end
         
-        add_index :locations [:customer_id, :state_id]
+        #add_index :locations [:customer_id, :state_id]
     end
 end

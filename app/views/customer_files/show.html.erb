@@ -35,10 +35,15 @@
     </div>
     
     <div class="block span8">
-
-    <% if @customer_file.isImage? %>
-        <%= image_tag @customer_file.attachment %>
-    <% end %>
+        <% if @customer_file.isImage? %>
+        <div class="block">
+            <%= image_tag @customer_file.attachment %>
+        </div>
+        <% end %>
+     
+        <div class="btn-group">
+        <%= link_to "Download file", download_customer_file_path(@customer_file.id), :target => "_blank", :class=> "btn pull-right" %>
+        </div>
 
     </div>
 </div>

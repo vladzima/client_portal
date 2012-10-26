@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     #attr_accessible :password, :password_confirmation
     
     before_validation :create_user_sans_password, :on => :create
-    before_save :set_internal_vals
+    #before_save :set_internal_vals #this seems to be interfering with the process of editing a user - we need to prevent a user being set as admin but not internal
 	
 	acts_as_authentic do |c|
         c.validate_login_field = false

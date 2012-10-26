@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
     before_filter :require_login
-    before_filter :internal_only, :only => [:show, :edit, :update, :create, :update, :destroy ]
-    before_filter :internal_admin_only, :only => [:new, :edit, :create, :destroy]
+    before_filter :internal_only, :only => [:show, :create, :destroy ]
+    before_filter :internal_admin_only, :only => [:new, :create, :destroy]
 
 	def index
         if current_user.internal == false
+            #a non internal user can only see their own profile
             @user = User.find(current_user.id)
             render "show"
         else
@@ -33,11 +34,22 @@ class UsersController < ApplicationController
     def edit
         @user = User.find(params[:id])
     end
+    
+    def edit_profile
+        @user = User.find(current_user.id)
+        if current_user.admin == true
+            render "edit"
+        else
+            render "edit_profile"
+        end
+    end
 
     def create
         #logger.debug(params)
         @user = User.new(params[:user])
         if @user.save
+            @user.deliver_password_reset_instructions!  
+            flash[:notice] = "Instructions to set your password have been emailed to #{@user.email}." 
             redirect_to @user, notice: 'User was successfully created.'
         else
             render action: "new"
