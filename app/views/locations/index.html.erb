@@ -10,7 +10,6 @@
 			<th>Zipcode</th>
 			<th>Phone</th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,8 +21,10 @@
 		<td><%= location.state_name %></td>
 		<td><%= location.zipcode %></td>
 		<td><%= location.phone %></td>
-		<td><%= link_to "<i class='icon-pencil'> </i>".html_safe, edit_location_path(location.id) %></td>
-		<td><%= link_to "<i class='icon-remove'></i>".html_safe, location_path(location.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td>
+            <%= link_to icon_edit, edit_location_path(location.id) %> 
+            <%= link_to icon_delete, location_path(location.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
 	  </tr>
 	<% end %>
 	</tbody>

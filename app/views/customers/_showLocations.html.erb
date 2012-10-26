@@ -1,7 +1,8 @@
 <!-- showLocations partial -->
 <a href="#tablewidget" class="block-heading" data-toggle="collapse">Locations<span class="label label-warning"><%= @customer.locations.count %></span></a>
-<% if @customer.locations.count > 0 %>
+
 <div id="tablewidget" class="block-body collapse in">
+    <% if @customer.locations.count > 0 %>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -18,11 +19,11 @@
             <% end %>
         </tbody>
     </table>
+    <% else %>
+        <p>currently there are no locations</p>
+    <% end %>
+    <div class="btn-toolbar">
+        <%= link_to 'Add Location +', new_customer_location_path(@customer.id), :class=>"btn btn-primary" %>
+        <div class="clear fix"></div>
+    </div>
 </div>
-<% else %>
-    <p>currently there are no locations</p>
-<% end %>
-
-<p>
-    <%= link_to 'Add Location +', new_customer_location_path(@customer.id), :class=>"btn btn-primary" %>
-</p>

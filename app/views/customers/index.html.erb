@@ -1,24 +1,26 @@
-<h1>Listing customers</h1>
+<div class="well">
+    <h1>Listing customers</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @customers.each do |customer| %>
+            <tr>
+                <td><%= link_to customer.name, customer_path(customer.id) %></td>
+                <td><%= link_to icon_edit, edit_customer_path(customer) %></td>
+                <td><%= link_to icon_delete,  customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    <% @customers.each do |customer| %>
-        <tr>
-            <td><%= link_to customer.name, customer_path(customer.id) %></td>
-            <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-            <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-    <% end %>
-    </tbody>
-</table>
-
-<br />
-
-<%= link_to 'New Customer', new_customer_path, :class=> "btn" %>
+<div>
+    <%= link_to 'New Customer', new_customer_path, :class=> "btn" %>
+</div>

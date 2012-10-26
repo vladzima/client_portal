@@ -84,9 +84,15 @@
         <% end %>
         
         <div class="content">
+            
             <div class="header">
                 <h1>Dashboard</h1>
             </div>
+            
+            <ul class="breadcrumb">
+                <li>Home <span class="divider">/</span> </li>
+                <li><%= params[:controller].capitalize %></li>
+            </ul>
             
             <div class="container-fluid">
                 <div class="row-fluid">
