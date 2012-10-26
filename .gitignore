@@ -13,6 +13,12 @@
 #ignore paperclip files in
 #/public/system/*
 
+# ignore environment files
+/config/environments/*
+
+# ignore db config
+/config/database.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

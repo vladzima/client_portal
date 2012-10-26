@@ -14,7 +14,9 @@ class CustomerFile < ActiveRecord::Base
 	def isImage?
         if self.attachment_file_name.nil?
 			return false
-		elsif self.attachment_file_name.end_with?('.png') || self.attachment_file_name.end_with?('.jpg')
+		elsif self.attachment_file_name.downcase.end_with?('.png') || self.attachment_file_name.downcase.end_with?('.jpg') ||
+            self.attachment_file_name.downcase.end_with?('.jpeg') || self.attachment_file_name.downcase.end_with?('.gif') ||
+            self.attachment_file_name.downcase.end_with?('.bmp') || self.attachment_file_name.downcase.end_with?('.tiff')
 			return true
         else
             return false
