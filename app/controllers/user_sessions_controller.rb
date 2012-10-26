@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
         if @user_session.save
             logger.debug()
             flash[:notice] =  'Thank you for using Best Neon Web portal'
-            redirect_to customers_path
+            redirect_back_or_default customers_path
         else
             flash[:error] = "Invalid action"
             render action: "new"

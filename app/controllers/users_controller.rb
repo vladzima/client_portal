@@ -21,8 +21,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
-    # GET /users/new
-    # GET /users/new.json
     def new
         @user = User.new
         if params[:customer_id]
@@ -37,11 +35,11 @@ class UsersController < ApplicationController
     
     def edit_profile
         @user = User.find(current_user.id)
-        if current_user.admin == true
-            render "edit"
-        else
-            render "edit_profile"
-        end
+        #if current_user.admin == true
+        #    render "edit"
+        #else
+        #    render "edit_profile"
+        #end
     end
 
     def create
@@ -61,14 +59,10 @@ class UsersController < ApplicationController
         #logger.debug(params)
         @user = User.find(params[:id])
 
-        respond_to do |format|
-            if @user.update_attributes(params[:user])
-                format.html { redirect_to @user, notice: 'User was successfully updated.' }
-                format.json { head :no_content }
-            else
-                format.html { render action: "edit" }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
-            end
+        if @user.update_attributes(params[:user])
+            redirect_to @user, notice: 'User was successfully updated.'
+        else
+            render action: "edit" 
         end
     end
 
