@@ -1,57 +1,58 @@
 <div class="row-fluid">
-
-    <div class="block">
-
-        <p id="notice"><%= notice %></p>
+    
+    <div class="block span6">
         
-        <p>
-          <b>Customer:</b>
-          <%= @location.customer.name %>
-        </p>
+        <div class="well-sans-border">
+            
+            <p>
+              <b>Customer:</b> <%= @location.customer.name %>
+            </p>
+            
+            <p>
+              <b>Store number:</b> <%= @location.store_number %>
+            </p>
+            
+            <p>
+              <b>Street:</b> <%= @location.street %>
+            </p>
+            
+            <p>
+              <b>City:</b> <%= @location.city %>
+            </p>
+            
+            <p>
+              <b>State:</b> <%= @location.state_name%>
+            </p>
+            
+            <p>
+              <b>Zipcode:</b> <%= @location.zipcode %>
+            </p>
+            
+            <p>
+              <b>Phone:</b> <%= @location.phone %>
+            </p>
+            
+            <div class="btn-group">
+            <%= link_to 'Edit Location Data', edit_location_path(@location), :class=>"btn" %>
+            <%= link_to 'Back', locations_path, :class=>"btn" %>
+            </div>
+        </div>
         
-        <p>
-          <b>Store number:</b>
-          <%= @location.store_number %>
-        </p>
-        
-        <p>
-          <b>Street:</b>
-          <%= @location.street %>
-        </p>
-        
-        <p>
-          <b>City:</b>
-          <%= @location.city %>
-        </p>
-        
-        <p>
-          <b>State:</b>
-          <%= @location.state_name%>
-        </p>
-        
-        <p>
-          <b>Zipcode:</b>
-          <%= @location.zipcode %>
-        </p>
-        
-        <p>
-          <b>Phone:</b>
-          <%= @location.phone %>
-        </p>
-        
-        <div class="btn-group">
-        <%= link_to 'Edit', edit_location_path(@location), :class=>"btn" %>
-        <%= link_to 'Back', locations_path, :class=>"btn" %>
+    </div>
+    
+    <div class="block span6">
+        <div class="well-sans-border">
+            <% @categoryFileHash = CustomerFile.getCustomerFileCategoryHash(@location.customer_files) %>
+            <%= render "showFilesPerCategory" %>
         </div>
     </div>
 </div>
 
 <div class="row-fluid">
 
-    <div class="block">
-        <%= render "showFiles" %>
-        <%= link_to "Add new files", new_location_customer_file_path(@location.customer_id), :class => "btn btn-primary" %>
-        <%= link_to "Add new photo", new_location_customer_file_path(@location.customer_id, :category_id => 1), :class => "btn btn-primary" %>
+    <div class="block span6">
+        <% render "showFiles" %>
+        <%= link_to "Add new files", new_location_customer_file_path(@location.id), :class => "btn btn-primary" %>
+        <%= link_to "Add new photo", new_location_customer_file_path(@location.id, :category_id => 1), :class => "btn btn-primary" %>
     </div>
 </div>
-

@@ -7,17 +7,15 @@
 			<th>Abbr</th>
 			<th></th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 	<% @states.each do |state| %>
 	  <tr>
-		<td><%= state.name %></td>
+		<td><%= link_to state.name, state_path(state.id) %></td>
 		<td><%= state.abbr %></td>
-		<td><%= link_to 'Show', state %></td>
-		<td><%= link_to 'Edit', edit_state_path(state) %></td>
-		<td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to icon_edit, edit_state_path(state) %></td>
+		<td><%= link_to icon_delete, state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
 	<% end %>
 	</tbody>

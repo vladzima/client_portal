@@ -31,3 +31,4 @@
 <%= will_paginate(@customer_files) %>
 
 <%= link_to "Add new #{@filetype}", new_customer_file_path(:category_id => params[:category]), :class => "btn btn-primary" %>
+<%= link_to "Back to #{@location.store_number}", location_path(@location.id), :class => "btn btn-primary" %>

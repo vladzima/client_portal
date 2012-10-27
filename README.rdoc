@@ -1,18 +1,15 @@
 == Client Portal RoR app
 
-this is a project that was built for a client who needed a postal for their customers
+>this is a project that was built for a client who needed a postal for their customers
+
 This app allows a user to do the following
-	Create Users
-		internal users -> have access to all files
-		customer users -> have access to files with matching customer id
+	* Create Users
+	    * internal users -> have access to all files
+	    * customer users -> have access to files with matching customer id
 		
-	Create Customers
+	* Create Customers
 	
-	Create Users
+	* Create Location - associated with customers
 	
-	Create Location
-	
-	Create Files associated with Customers and Users
-	
-	
+	* Upload/Download Files  - associated with Customers, Users and Locations
 	

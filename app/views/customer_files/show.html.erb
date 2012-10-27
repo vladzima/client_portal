@@ -1,36 +1,42 @@
 <div class="row-fluid">
     <div class="block span4">
-
-        <p>
-            <b>File:</b>
-            <%= @customer_file.attachment_file_name %>
-        </p>
+        <div class="well-sans-border">
+            <p>
+                <b>File:</b>
+                <%= @customer_file.attachment_file_name %>
+            </p>
+            
+            <p>
+              <b>Name:</b>
+              <%= @customer_file.name %>
+            </p>
+            
+            <p>
+              <b>Category:</b>
+              <%= @customer_file.category.name %>
+            </p>
+            
+            <% if current_user.internal %>
+            <p>
+              <b>Customer:</b>
+              <%= @customer_file.customer.name %>
+            </p>
+            <% end %>
         
-        <p>
-          <b>Name:</b>
-          <%= @customer_file.name %>
-        </p>
-        
-        <p>
-          <b>Category:</b>
-          <%= @customer_file.category.name %>
-        </p>
-        
-        <% if current_user.internal %>
-        <p>
-          <b>Customer:</b>
-          <%= @customer_file.customer.name %>
-        </p>
-        <% end %>
-    
-        <p>
-          <b>Location:</b>
-          <%= @customer_file.location.store_number %>
-        </p>
-        
-        <div class="btn-group">
-        <%= link_to 'Edit', edit_customer_file_path(@customer_file), :class=> "btn" %>
-        <%= link_to 'Back', customer_files_path, :class=> "btn" %>
+            <p>
+              <b>Location:</b>
+              <%= @customer_file.location.store_number %>
+            </p>
+            
+            <div class="btn-group">
+            <% if params[:location_id] %>
+                <%= link_to 'Edit', edit_location_customer_file_path(@customer_file.location_id, @customer_file.id), :class=> "btn" %>
+                <%= link_to 'Back to location', location_customer_files_path(@customer_file), :class=> "btn" %>
+            <% else %>
+                <%= link_to 'Edit', edit_customer_file_path(@customer_file), :class=> "btn" %>
+                <%= link_to 'Back to files', customer_files_path, :class=> "btn" %>
+            <% end %>
+            </div>
         </div>
     </div>
     
@@ -39,6 +45,12 @@
         <div class="block">
             <%= image_tag @customer_file.attachment %>
         </div>
+        <% elsif @customer_file.isPDF? %>
+            <!-- show in page pdf doc -->
+            <iframe src="http://docs.google.com/gview?url=http://<%= request.host %><%= @customer_file.attachment %>&embedded=true" style="width:600px; height:700px;" frameborder="0"></iframe>
+            <!-- OR we can do this
+            <embed src="<%= @customer_file.attachment.path %>" width="500" height="600">
+            -->
         <% end %>
      
         <div class="btn-group">

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 	belongs_to :customer
 	
 	attr_accessor :password_confirmation
-    #attr_reader   :password
+    attr_reader   :password
     
     #attr_accessor :password 
     #attr_accessible :password, :password_confirmation
@@ -13,13 +13,7 @@ class User < ActiveRecord::Base
 	
 	acts_as_authentic do |c|
         c.validate_login_field = false
-        
-        #external = Proc.new { |r| r.externally_authenticated? }
-
-        #c.merge_validates_confirmation_of_password_field_options(:unless => external)
-        #c.merge_validates_length_of_password_confirmation_field_options(:unless => external)
-        #c.merge_validates_length_of_password_field_options(:unless => external)
-    end # block optional
+    end
 
 	def deliver_password_reset_instructions!  
         reset_perishable_token!  

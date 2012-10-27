@@ -23,12 +23,41 @@ class CustomerFile < ActiveRecord::Base
         end
 	end
 	
+	def isPDF?
+        if self.attachment_file_name.downcase.end_with?('.pdf')
+            return true
+        else
+            return false
+        end
+	end
+	
 	def customer_store
         if self.location.nil? == false
             return self.location.store_number
         else
             return "N/A"
         end
+	end
+	
+	def category_name
+        if self.category.nil? == false
+            return self.category.name
+        else
+            return "undefined"
+        end
+	end
+	
+	def self.getCustomerFileCategoryHash(fileArr)
+        categoryHash = Hash.new()
+        fileArr.each do |file|
+            if categoryHash.include?(file.category_name) == false
+                categoryHash[file.category_name] = 1
+            else
+                count = categoryHash[file.category_name].to_i + 1
+                categoryHash[file.category_name] = count
+            end
+        end
+        return categoryHash
 	end
 	
 	private

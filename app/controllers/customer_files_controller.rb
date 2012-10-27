@@ -5,11 +5,21 @@ class CustomerFilesController < ApplicationController
         conditionsHash = Hash.new
         @filetype = "File"
         
+        if params[:location_id]
+            @location = Location.find(params[:location_id])
+            conditionsHash["location_id"] = @location.id
+        end
+        
         #if category id is passed
         if params[:category]
             conditionsHash["category_id"] = params[:category]
-            @customer_files = CustomerFile.where("category_id = ?", params[:category])
+            #@customer_files = CustomerFile.where("category_id = ?", params[:category])
             @filetype = Category.find(params[:category]).name
+        elsif params[:category_name]
+            @category = Category.find_by_name(params[:category_name])
+            if @category.nil? == false
+                conditionsHash["category_id"] = @category.id
+            end
         end
         
         if current_user.internal == false

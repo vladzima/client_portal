@@ -12,7 +12,7 @@ class UsersController < ApplicationController
             if params[:customer_id]
                 @users = User.where("customer_id = ?", params[:customer_id])
             else
-                @users = User.all
+                @users = User.paginate(:page => params[:page], :per_page => 20)
             end
 		end
     end

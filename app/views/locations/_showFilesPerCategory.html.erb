@@ -1,0 +1,24 @@
+<!-- showLocations partial -->
+<a href="#tablewidget" class="block-heading" data-toggle="collapse">Customer files:</a>
+<% if @categoryFileHash.count > 0 %>
+<div id="tablewidget" class="block-body collapse in">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>File by Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @categoryFileHash.each do |cat, count| %>
+            <tr>
+                <td>
+                    <a href="<%= location_customer_files_path(:location_id => params[:id], "category_name" => cat) %>"><%= cat %> - <span class="label label-warning"><%= count %></span></a>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<% else %>
+    <p>currently there are no files</p>
+<% end %>

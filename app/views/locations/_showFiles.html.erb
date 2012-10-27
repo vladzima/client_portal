@@ -13,7 +13,7 @@
         <tbody>
             <% @location.customer_files.each do |file| %>
             <tr>
-                <td><%= link_to file.attachment_file_name, customer_file_path(file.id) %></td>
+                <td><%= link_to file.attachment_file_name, location_customer_file_path(file.location_id,file.id) %></td>
                 <td><%= file.name %></td>
                 <td><%= file.category.name %></td>
             </tr>

@@ -1,31 +1,43 @@
-<h1>Listing users</h1>
+<div class="block">
+    <a href="#tablewidget" class="block-heading" data-toggle="collapse">Users</a>
+    <% if @users.count > 0 %>
+    <div id="tablewidget" class="block-body collapse in">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Customer Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= link_to user.email, user_path(user.id) %></td>
+                <td>
+                    <%= user.customer_name %>
+                </td>
+                <% if current_user.isAdmin? %>
+                <td><%= link_to icon_edit, edit_user_path(user) %></td>
+                <td><%= link_to icon_delete, user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% else %>
+                    <td></td>
+                    <td></td>
+                <% end %>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <% else %>
+        You currently have no users
+    <% end %>
+    
+    <% if params[:customer_id] && current_user.isAdmin? %>
+    <%= link_to 'New User', new_customer_user_path(params[:customer_id]), :class=>"btn" %>
+    <% elsif current_user.isAdmin? %>
+    <%= link_to 'New User', new_user_path, :class=>"btn" %>
+    <% end %>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>Email</th>
-			<th>Customer Name</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-	<% @users.each do |user| %>
-		<tr>
-			<td><%= link_to user.email, user_path(user.id) %></td>
-			<td>
-                <%= user.customer_name %>
-            </td>
-			<td><%= link_to 'Edit', edit_user_path(user) %></td>
-			<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
-
-<br />
-<% if params[:customer_id] %>
-<%= link_to 'New User', new_customer_user_path(params[:customer_id]), :class=>"btn" %>
-<% else %>
-<%= link_to 'New User', new_user_path, :class=>"btn" %>
-<% end %>
+    <%= will_paginate(@users) %>
+</div>
